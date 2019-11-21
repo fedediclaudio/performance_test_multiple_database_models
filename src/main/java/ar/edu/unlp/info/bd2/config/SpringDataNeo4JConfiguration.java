@@ -1,6 +1,7 @@
 package ar.edu.unlp.info.bd2.config;
 
 import ar.edu.unlp.info.bd2.services.BithubService;
+import ar.edu.unlp.info.bd2.services.SpringDataBithubService;
 import org.neo4j.ogm.config.ClasspathConfigurationSource;
 import org.neo4j.ogm.config.ConfigurationSource;
 import org.neo4j.ogm.session.SessionFactory;
@@ -17,9 +18,7 @@ public class SpringDataNeo4JConfiguration {
 
     @Bean
     public BithubService springDataJpaService() {
-        // CREAR CLASE
-        //return new SpringDataNeo4JBithubService()
-        return null;
+        return new SpringDataBithubService();
     }
 
     @Bean
