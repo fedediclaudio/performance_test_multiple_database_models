@@ -26,3 +26,14 @@ services:
     image: cassandra
     ports: 
     - 7000:7000
+  elastic:
+    image: elasticsearch:7.4.2
+    ports:
+      - 9200:9200 # - API
+      - 9300:9300 # - Comunicacion entre nodos
+    environment:
+      - discovery.type=single-node
+  kibana:
+    image: kibana:7.4.2
+    ports:
+      - 5601:5601
