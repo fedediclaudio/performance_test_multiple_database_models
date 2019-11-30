@@ -1,31 +1,32 @@
 version: "3.3"
 services:
-  # mysql:
-  #   image: "mysql"
-  #   command: --default-authentication-plugin=mysql_native_password
-  #   ports:
-  #   - 3306:3306
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: 123456
-  # mongo:
-  #   image: mongo
-  #   ports:
-  #   - 27017:27017
-  #   environment:
-  #     MONGO_INITDB_ROOT_USERNAME: root
-  #     MONGO_INITDB_ROOT_PASSWORD: root
-  # neo4j:
-  #   image: neo4j
-  #   ports:
-  #   - 7474:7474 # - Browser explorer
-  #   - 7687:7687 # - Bolt
-  #   volumes:
-  #   - ./neo4j/data:/data
-  #   - ./neo4j/conf:/conf
-  # cassandra:
-  #   image: cassandra
-  #   ports: 
-  #   - 7000:7000
+  mysql:
+    image: "mysql"
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+  neo4j:
+    image: neo4j
+    ports:
+      - 7474:7474 # - Browser explorer
+      - 7687:7687 # - Bolt
+    volumes:
+      - ./neo4j/data:/data
+      - ./neo4j/conf:/conf
+  cassandra:
+    image: cassandra
+    ports:
+      - 7000:7000
+      - 9042:9042
   elastic:
     image: elasticsearch:7.4.2
     container_name: elasticsearch
@@ -39,17 +40,17 @@ services:
   kibana:
     image: kibana:7.4.2
     environment:
-    - SERVER_NAME=kibana.localhost
-    - ELASTICSEARCH_URL=http://elasticsearch:9200
-    - ELASTICSEARCH_USERNAME=elastic
-    - ELASTICSEARCH_HOST=elasticsearch
-    - ELASTICSEARCH_PORT=9200
-    - ELASTIC_PWD=changeme
-    - KIBANA_PWD=changeme
+      - SERVER_NAME=kibana.localhost
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - ELASTICSEARCH_USERNAME=elastic
+      - ELASTICSEARCH_HOST=elasticsearch
+      - ELASTICSEARCH_PORT=9200
+      - ELASTIC_PWD=changeme
+      - KIBANA_PWD=changeme
     ports:
       - 5601:5601
-    expose: 
-    - "5601"
+    expose:
+      - "5601"
     links:
       - elastic
     depends_on:

@@ -1,40 +1,52 @@
 package com.bd2final.demo.model;
 
+import com.datastax.driver.core.utils.UUIDs;
 import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.codecs.pojo.annotations.BsonIgnore;
 import org.bson.types.ObjectId;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Document
 @Table(name="user")
+@org.springframework.data.cassandra.core.mapping.Table("users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
-    @BsonId
-    ObjectId objectId;
+    //Cassandra ID
+    @org.springframework.data.cassandra.core.mapping.Column
+    @PrimaryKey(value = "user_id", forceQuote = true)
+    private UUID id_user = UUIDs.timeBased();
 
-//    public Long getId(){ return id; }
+//    @BsonId
+//    ObjectId objectId;
 
-    public ObjectId getObjectId(){ return objectId; }
+    public Long getId(){ return id; }
 
-//    public void setId(Long id){
-//        this.id = id;
-//    }
+//    public ObjectId getObjectId(){ return objectId; }
 
-    public void setObjectId(ObjectId objectId){
-        this.objectId = objectId;
+    public void setId(Long id){
+        this.id = id;
     }
 
+//    public void setObjectId(ObjectId objectId){
+//        this.objectId = objectId;
+//    }
+
     //@Column(length = 100, nullable = false)
+    @org.springframework.data.cassandra.core.mapping.Column
     private String name;
 
     //@Column(length = 100, nullable = false)
+    @org.springframework.data.cassandra.core.mapping.Column
     private String email;
 
     public User(String name, String email){

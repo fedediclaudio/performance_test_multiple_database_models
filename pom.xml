@@ -19,14 +19,25 @@
 	</properties>
 
 	<dependencies>
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-data-cassandra</artifactId>-->
-<!--		</dependency>-->
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-data-elasticsearch</artifactId>-->
-<!--		</dependency>-->
+<!--		DEPENDENCIAS DE CASANDRA-->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-cassandra</artifactId>
+			</dependency>
+<!--			<dependency>-->
+<!--				<groupId>com.datastax.cassandra</groupId>-->
+<!--				<artifactId>cassandra-driver-core</artifactId>-->
+<!--			</dependency>-->
+
+<!--		DEPENDENCIAS DE ELASTICSEARCH-->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.elasticsearch</groupId>
+				<artifactId>elasticsearch</artifactId>
+			</dependency>
 
 <!--		DEPENDENCIAS DE JPA Y MYSQL-->
 			<dependency>
