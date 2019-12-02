@@ -1,12 +1,15 @@
 package com.bd2final.demo.services;
 
+import com.bd2final.demo.model.User;
 import com.bd2final.demo.model.UserElastic;
 import com.bd2final.demo.repositories.elasticsearch.UserRepositoryElasticsearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
-public class BitHubServiceElasticsearch {
+public class BitHubServiceElasticsearch implements BitHubService<String> {
 
     @Autowired
     private UserRepositoryElasticsearch userRepositoryElasticsearch;
@@ -16,8 +19,12 @@ public class BitHubServiceElasticsearch {
         userRepositoryElasticsearch.save(user);
     }
 
-    public Iterable<UserElastic> allUsers() {
-        return userRepositoryElasticsearch.findAll();
+    public Iterable<User> allUsers() {
+        ArrayList<User> uList = new ArrayList<User>();
+        for(UserElastic user :userRepositoryElasticsearch.findAll()){
+            uList.add(user);
+        }
+        return uList;
     }
 
     public void deleteAll() {

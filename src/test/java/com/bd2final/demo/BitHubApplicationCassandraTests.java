@@ -1,30 +1,31 @@
 package com.bd2final.demo;
 
-import com.bd2final.demo.model.User;
+import com.bd2final.demo.model.PersistentObject;
+import com.bd2final.demo.model.UserJPA;
+import com.bd2final.demo.services.BitHubService;
 import com.bd2final.demo.services.BitHubServiceCassandra;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
 
 import java.util.List;
+import java.util.UUID;
 
 @SpringBootTest
-public class BitHubApplicationCassandraTests {
+public class BitHubApplicationCassandraTests extends BitHubApplicationTest<UUID> {
 
     @Autowired
     private BitHubServiceCassandra service;
 
-    @BeforeEach
-    public void setUp(){
-        service.createUser("a","a");
-        service.createUser("b","b");
+    @Override
+    protected BitHubService getService() {
+        return service;
     }
 
-    @Test
-    public void createUser(){
-        List<User> res = service.allUsers();
+    @Override
+    protected UUID getId(PersistentObject object) {
+        return (UUID) object.getId();
     }
 
 }

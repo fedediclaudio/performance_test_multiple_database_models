@@ -1,29 +1,31 @@
 package com.bd2final.demo;
 
-import com.bd2final.demo.model.User;
+import com.bd2final.demo.model.PersistentObject;
 import com.bd2final.demo.model.UserElastic;
+import com.bd2final.demo.services.BitHubService;
 import com.bd2final.demo.services.BitHubServiceElasticsearch;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 
 @SpringBootTest
-public class BitHubApplicationElasticsearchTests {
+public class BitHubApplicationElasticsearchTests extends BitHubApplicationTest<String>{
 
     @Autowired
     private BitHubServiceElasticsearch service;
 
-    @BeforeEach
-    public void setUp(){
-        service.deleteAll();
-        service.createUser("a","a");
-        service.createUser("b","b");
+
+    @Override
+    protected BitHubService getService() {
+        return service;
     }
 
-    @Test
-    public void createUser(){
-        Iterable<UserElastic> res = service.allUsers();
+    @Override
+    protected String getId(PersistentObject object) {
+        return (String) object.getId();
     }
 }

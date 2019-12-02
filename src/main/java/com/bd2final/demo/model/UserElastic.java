@@ -7,42 +7,30 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 
 @Document(indexName = "user")
-public class UserElastic {
+public class UserElastic extends User<String> implements PersistentObject<String>{
+
     @Id
     private String id;
-    @Field
-    private String email;
-    @Field
-    private String username;
+
+    public UserElastic(){}
 
     public UserElastic(String username, String email){
         this.email = email;
-        this.username = username;
+        this.name = username;
     }
 
     public UserElastic(String id, String username, String email){
         this.id = id;
         this.email = email;
-        this.username = username;
+        this.name = username;
     }
 
-
-
-    public UserElastic(){}
-
-    public String getEmail() {
-        return email;
+    @Override
+    public String getId() {
+        return id;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void setId(String id) {
+        this.id = id;
     }
 }

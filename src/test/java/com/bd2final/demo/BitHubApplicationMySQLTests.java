@@ -1,7 +1,8 @@
 package com.bd2final.demo;
 
-import com.bd2final.demo.model.User;
-import com.bd2final.demo.services.BitHubServiceMongo;
+import com.bd2final.demo.model.PersistentObject;
+import com.bd2final.demo.model.UserJPA;
+import com.bd2final.demo.services.BitHubService;
 import com.bd2final.demo.services.BitHubServiceMySQL;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,19 +12,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 @SpringBootTest
-public class BitHubApplicationMySQLTests {
+public class BitHubApplicationMySQLTests extends BitHubApplicationTest<Long> {
 
     @Autowired
     private BitHubServiceMySQL service;
 
-    @BeforeEach
-    public void setUp(){
-        service.createUser("a","a");
-        service.createUser("b","b");
+    @Override
+    protected BitHubService getService() {
+        return service;
     }
 
-    @Test
-    public void createUser(){
-        List<User> res = service.allUsers();
+    @Override
+    protected Long getId(PersistentObject object) {
+        return (Long) object.getId();
     }
 }
