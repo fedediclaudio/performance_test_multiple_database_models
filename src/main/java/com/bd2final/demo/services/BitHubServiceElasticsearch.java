@@ -27,6 +27,16 @@ public class BitHubServiceElasticsearch implements BitHubService<String> {
         return uList;
     }
 
+    @Override
+    public void createCommit(String message, String hash, User author) {
+
+    }
+
+    @Override
+    public Iterable<User> allCommits() {
+        return null;
+    }
+
     public void deleteAll() {
         userRepositoryElasticsearch.deleteAll();
     }

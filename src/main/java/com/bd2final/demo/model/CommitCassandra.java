@@ -7,20 +7,23 @@ import org.springframework.data.cassandra.core.mapping.Table;
 
 import java.util.UUID;
 
-@Table("user")
-public class UserCassandra extends User<UUID> implements PersistentObject<UUID>{
+@Table("commit")
+public class CommitCassandra extends Commit<UUID> implements PersistentObject<UUID> {
 
     @Column
     @PrimaryKey(value = "id", forceQuote = true)
     private UUID id = UUIDs.timeBased();
 
-    public UserCassandra() {}
+    public CommitCassandra() {}
 
-    public UserCassandra(String name, String email){
-        this.name = name;
-        this.email = email;
+    public CommitCassandra(String message, String hash, UserJPA author) {
+        this.message = message;
+        this.hash = hash;
+        this.author = author;
+        author.getCommits().add(this);
     }
 
+    @Override
     public UUID getId() {
         return id;
     }

@@ -31,4 +31,14 @@ public class BitHubServiceCassandra implements BitHubService<UUID> {
         }
         return uList;
     }
+
+    @Override
+    public void createCommit(String message, String hash, User author) {
+
+    }
+
+    @Override
+    public Iterable<User> allCommits() {
+        return null;
+    }
 }

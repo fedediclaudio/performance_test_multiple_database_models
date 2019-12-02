@@ -10,4 +10,8 @@ public interface BitHubService<IdType> {
 
     Iterable<User> allUsers();
 
+    void createCommit(String message, String hash, User author);
+
+    Iterable<User> allCommits();
+
 }

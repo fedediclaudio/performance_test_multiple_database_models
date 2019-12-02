@@ -29,4 +29,14 @@ public class BitHubServiceMySQL implements BitHubService<Long> {
         }
         return uList;
     }
+
+    @Override
+    public void createCommit(String message, String hash, User author) {
+
+    }
+
+    @Override
+    public Iterable<User> allCommits() {
+        return null;
+    }
 }
