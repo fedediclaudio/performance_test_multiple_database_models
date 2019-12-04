@@ -1,5 +1,6 @@
 package com.bd2final.demo.services;
 
+import com.bd2final.demo.model.Commit;
 import com.bd2final.demo.model.User;
 import com.bd2final.demo.model.UserElastic;
 import com.bd2final.demo.repositories.elasticsearch.UserRepositoryElasticsearch;
@@ -14,9 +15,10 @@ public class BitHubServiceElasticsearch implements BitHubService<String> {
     @Autowired
     private UserRepositoryElasticsearch userRepositoryElasticsearch;
 
-    public void createUser(String name, String email) {
+    public User createUser(String name, String email) {
         UserElastic user = new UserElastic(name, email);
         userRepositoryElasticsearch.save(user);
+        return user;
     }
 
     public Iterable<User> allUsers() {
@@ -28,12 +30,12 @@ public class BitHubServiceElasticsearch implements BitHubService<String> {
     }
 
     @Override
-    public void createCommit(String message, String hash, User author) {
-
+    public Commit createCommit(String message, String hash, User author) {
+        return null;
     }
 
     @Override
-    public Iterable<User> allCommits() {
+    public Iterable<Commit> allCommits() {
         return null;
     }
 

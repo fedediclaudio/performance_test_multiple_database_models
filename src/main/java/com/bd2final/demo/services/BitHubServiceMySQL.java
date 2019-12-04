@@ -1,5 +1,7 @@
 package com.bd2final.demo.services;
 
+import com.bd2final.demo.model.Commit;
+import com.bd2final.demo.model.CommitJPA;
 import com.bd2final.demo.model.User;
 import com.bd2final.demo.model.UserJPA;
 import com.bd2final.demo.repositories.mysql.UserRepositoryMySQL;
@@ -15,10 +17,12 @@ public class BitHubServiceMySQL implements BitHubService<Long> {
     @Autowired
     private UserRepositoryMySQL userRepositoryMySQL;
 
+
     @Override
-    public void createUser(String name, String email) {
+    public User createUser(String name, String email) {
         UserJPA user = new UserJPA(name, email);
         userRepositoryMySQL.save(user);
+        return user;
     }
 
     @Override
@@ -31,12 +35,12 @@ public class BitHubServiceMySQL implements BitHubService<Long> {
     }
 
     @Override
-    public void createCommit(String message, String hash, User author) {
-
+    public Commit createCommit(String message, String hash, User author) {
+        return null;
     }
 
     @Override
-    public Iterable<User> allCommits() {
+    public Iterable<Commit> allCommits() {
         return null;
     }
 }

@@ -1,5 +1,8 @@
 package com.bd2final.demo.model;
 
+import com.datastax.driver.core.DataType;
+import org.springframework.data.cassandra.core.mapping.CassandraType;
+
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -8,11 +11,11 @@ import javax.persistence.ManyToOne;
 public abstract class Commit<IdType> {
 
     @Column(nullable = false)
-    @org.springframework.data.cassandra.core.mapping.Column
+//    @org.springframework.data.cassandra.core.mapping.Column
     protected String hash;
 
     @Column(length = 250)
-    @org.springframework.data.cassandra.core.mapping.Column
+//    @org.springframework.data.cassandra.core.mapping.Column
     protected String message;
 
     @ManyToOne(fetch = FetchType.EAGER)

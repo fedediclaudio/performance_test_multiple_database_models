@@ -1,5 +1,6 @@
 package com.bd2final.demo.services;
 
+import com.bd2final.demo.model.Commit;
 import com.bd2final.demo.model.User;
 import com.bd2final.demo.model.UserJPA;
 import com.bd2final.demo.model.UserMongo;
@@ -21,9 +22,10 @@ public class BitHubServiceMongo implements BitHubService<ObjectId> {
     private UserRepositoryMongo userRepositoryMongo;
 
     @Override
-    public void createUser(String name, String email){
+    public User createUser(String name, String email){
         UserMongo user = new UserMongo(name, email);
         userRepositoryMongo.save(user);
+        return user;
     }
 
     @Override
@@ -36,12 +38,12 @@ public class BitHubServiceMongo implements BitHubService<ObjectId> {
     }
 
     @Override
-    public void createCommit(String message, String hash, User author) {
-
+    public Commit createCommit(String message, String hash, User author) {
+        return null;
     }
 
     @Override
-    public Iterable<User> allCommits() {
+    public Iterable<Commit> allCommits() {
         return null;
     }
 }

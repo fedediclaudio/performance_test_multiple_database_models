@@ -1,6 +1,7 @@
 package com.bd2final.demo.services;
 
 import com.bd2final.demo.model.Commit;
+import com.bd2final.demo.model.CommitJPA;
 import com.bd2final.demo.model.User;
 import com.bd2final.demo.model.UserJPA;
 import com.bd2final.demo.repositories.neo4j.CommitRepositoryNeo4J;
@@ -23,9 +24,10 @@ public class BitHubServiceNeo4J implements BitHubService<Long> {
     @Autowired
     private CommitRepositoryNeo4J commitRepositoryNeo4J;
 
-    public void createUser(String name, String email){
+    public User createUser(String name, String email){
         UserJPA user = new UserJPA(name, email);
         userRepositoryNeo4J.save(user);
+        return user;
     }
 
     public Iterable<User> allUsers(){
@@ -37,12 +39,18 @@ public class BitHubServiceNeo4J implements BitHubService<Long> {
     }
 
     @Override
-    public void createCommit(String message, String hash, User author) {
-
+    public Commit createCommit(String message, String hash, User author) {
+        CommitJPA commit = new CommitJPA(message, hash, (UserJPA) author);
+        commitRepositoryNeo4J.save(commit);
+        return commit;
     }
 
     @Override
-    public Iterable<User> allCommits() {
-        return null;
+    public Iterable<Commit> allCommits() {
+        ArrayList<Commit> cList = new ArrayList<>();
+        for(CommitJPA commit : commitRepositoryNeo4J.findAll()){
+            cList.add(commit);
+        }
+        return cList;
     }
 }

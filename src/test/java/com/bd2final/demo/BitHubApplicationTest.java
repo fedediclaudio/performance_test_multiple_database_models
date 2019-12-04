@@ -22,13 +22,13 @@ public abstract class BitHubApplicationTest<T> {
 
     @BeforeEach
     public void setUp(){
-        this.getService().createUser("a","a");
-        this.getService().createUser("b","b");
+        User u = this.getService().createUser("a","a");
+        this.getService().createCommit("Un commit", "abc", u);
     }
 
     @Test
-    public void listUser(){
-        Iterable<User> res = this.getService().allUsers();
+    public void listCommit(){
+        Iterable<User> res = this.getService().allCommits();
     }
 
 }

@@ -1,8 +1,8 @@
 package com.bd2final.demo.services;
 
+import com.bd2final.demo.model.Commit;
 import com.bd2final.demo.model.User;
 import com.bd2final.demo.model.UserCassandra;
-import com.bd2final.demo.model.UserJPA;
 import com.bd2final.demo.repositories.cassandra.UserRepositoryCassandra;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +18,10 @@ public class BitHubServiceCassandra implements BitHubService<UUID> {
     private UserRepositoryCassandra userRepositoryCassandra;
 
     @Override
-    public void createUser(String name, String email) {
+    public User createUser(String name, String email) {
         UserCassandra user = new UserCassandra(name, email);
         userRepositoryCassandra.save(user);
+        return null;
     }
 
     @Override
@@ -33,12 +34,12 @@ public class BitHubServiceCassandra implements BitHubService<UUID> {
     }
 
     @Override
-    public void createCommit(String message, String hash, User author) {
-
+    public Commit createCommit(String message, String hash, User author) {
+        return null;
     }
 
     @Override
-    public Iterable<User> allCommits() {
+    public Iterable<Commit> allCommits() {
         return null;
     }
 }
