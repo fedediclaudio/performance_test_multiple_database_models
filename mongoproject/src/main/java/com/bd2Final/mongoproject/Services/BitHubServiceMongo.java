@@ -27,9 +27,7 @@ public class BitHubServiceMongo implements BitHubService {
 
     @Override
     public Iterable<User> allUsers(){
-        ArrayList<User> uList = new ArrayList<User>();
-        uList.addAll(userRepository.findAll());
-        return uList;
+        return userRepository.findAll();
     }
 
     @Override
@@ -38,5 +36,10 @@ public class BitHubServiceMongo implements BitHubService {
         commitRepository.save(commit);
         userRepository.save(author);
         return commit;
+    }
+
+    @Override
+    public Iterable<Commit> allCommits() {
+        return commitRepository.findAll();
     }
 }

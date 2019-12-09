@@ -25,16 +25,17 @@ public class BitHubServiceNeo4J implements BitHubService {
     }
 
     public Iterable<User> allUsers(){
-        ArrayList<User> uList = new ArrayList<User>();
-        for(User user : userRepository.findAll()){
-            uList.add(user);
-        }
-        return uList;
+        return userRepository.findAll();
     }
 
     public Commit createCommit(String message, String hash, User author) {
         Commit commit = new Commit(message,hash, author);
         commitRepository.save(commit);
         return commit;
+    }
+
+    @Override
+    public Iterable<Commit> allCommits() {
+        return commitRepository.findAll();
     }
 }

@@ -20,9 +20,10 @@ public class Commit {
 
     public Commit() {}
 
-    public Commit(String message, String hash){
+    public Commit(String message, String hash, User author){
         this.message = message;
         this.hash = hash;
+        author.getCommits().add(this);
     }
 
     public Commit(String id, String message, String hash){

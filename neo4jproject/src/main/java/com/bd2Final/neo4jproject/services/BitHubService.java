@@ -12,4 +12,6 @@ public interface BitHubService{
 
     Commit createCommit(String message, String hash, User author);
 
+    Iterable<Commit> allCommits();
+
 }

@@ -10,34 +10,35 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class BitHubServiceMySQL implements BitHubService<Long> {
+public class BitHubServiceMySQL implements BitHubService {
 
     @Autowired
-    private UserRepository userRepositoryMySQL;
+    private UserRepository userRepository;
 
     @Autowired
-    private CommitRepository commitRepositoryMySQL;
+    private CommitRepository commitRepository;
 
     @Override
     public User createUser(String name, String email) {
         User user = new User(name, email);
-        userRepositoryMySQL.save(user);
+        userRepository.save(user);
         return user;
     }
 
     @Override
     public Iterable<User> allUsers() {
-        ArrayList<User> uList = new ArrayList<User>();
-        for(User user :userRepositoryMySQL.findAll()){
-            uList.add(user);
-        }
-        return uList;
+        return userRepository.findAll();
     }
 
     @Override
     public Commit createCommit(String message, String hash, User author) {
         Commit commit = new Commit(message, hash,author);
-        commitRepositoryMySQL.save(commit);
+        commitRepository.save(commit);
         return commit;
+    }
+
+    @Override
+    public Iterable<Commit> allCommits() {
+        return commitRepository.findAll();
     }
 }

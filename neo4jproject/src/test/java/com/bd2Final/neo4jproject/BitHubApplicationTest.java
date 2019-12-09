@@ -24,7 +24,8 @@ public class BitHubApplicationTest{
 
     @Test
     public void listUser(){
-        Iterable res = this.service.allUsers();
+        Iterable<User> users = this.service.allUsers();
+        Iterable<Commit> commits = this.service.allCommits();
     }
 
 }

@@ -16,15 +16,15 @@ public class Commit {
     @Field
     private String message;
 
-    @DBRef
-    private User author;
+//    @DBRef
+//    private User author;
 
     public Commit() {}
 
     public Commit(String message, String hash, User author){
         this.message = message;
         this.hash = hash;
-        this.author = author;
+//        this.author = author;
         author.getCommits().add(this);
     }
 
@@ -53,11 +53,11 @@ public class Commit {
         this.message = message;
     }
 
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
+//    public User getAuthor() {
+//        return author;
+//    }
+//
+//    public void setAuthor(User author) {
+//        this.author = author;
+//    }
 }

@@ -18,8 +18,10 @@ public class User {
 
     private String email;
 
-//    @Field(type = FieldType.Nested)
-//    private List<Commit> commits = new ArrayList<>();
+    // NESTED: Objetos embebidos ***** Funciona bien
+
+    @Field(type = FieldType.Nested)
+    private List<Commit> commits = new ArrayList<>();
 
     public User() {}
 
@@ -58,4 +60,11 @@ public class User {
         this.email = email;
     }
 
+    public List<Commit> getCommits() {
+        return commits;
+    }
+
+    public void setCommits(List<Commit> commits) {
+        this.commits = commits;
+    }
 }
