@@ -3,11 +3,13 @@ package com.bd2Final.mongoproject.Services;
 import com.bd2Final.mongoproject.Model.*;
 import com.bd2Final.mongoproject.Repositories.CommitRepository;
 import com.bd2Final.mongoproject.Repositories.UserRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class BitHubServiceMongo implements BitHubService {
@@ -41,5 +43,27 @@ public class BitHubServiceMongo implements BitHubService {
     @Override
     public Iterable<Commit> allCommits() {
         return commitRepository.findAll();
+    }
+
+    @Override
+    public User updateUser(User user) {
+        this.userRepository.save(user);
+        return user;
+    }
+
+    @Override
+    public Iterable<User> getUserByEmail(String email) {
+        return this.userRepository.findByEmail(email);
+    }
+
+    @Override
+    public void deleteUserById(ObjectId id) {
+        this.userRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Commit> getCommitsByUserEmail(String email) {
+        List<Commit> commits = this.userRepository.findByEmail(email).iterator().next().getCommits();
+        return commits;
     }
 }

@@ -19,7 +19,6 @@ public class User {
     private String email;
 
     // NESTED: Objetos embebidos ***** Funciona bien
-
     @Field(type = FieldType.Nested)
     private List<Commit> commits = new ArrayList<>();
 

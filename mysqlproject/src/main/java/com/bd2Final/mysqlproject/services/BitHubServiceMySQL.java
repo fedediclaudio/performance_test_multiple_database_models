@@ -4,10 +4,14 @@ import com.bd2Final.mysqlproject.model.Commit;
 import com.bd2Final.mysqlproject.model.User;
 import com.bd2Final.mysqlproject.repositories.CommitRepository;
 import com.bd2Final.mysqlproject.repositories.UserRepository;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.beans.Transient;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class BitHubServiceMySQL implements BitHubService {
@@ -40,5 +44,29 @@ public class BitHubServiceMySQL implements BitHubService {
     @Override
     public Iterable<Commit> allCommits() {
         return commitRepository.findAll();
+    }
+
+    @Override
+    public User updateUser(User user) {
+        this.userRepository.save(user);
+        return user;
+    }
+
+    @Override
+    public Iterable<User> getUserByEmail(String email) {
+        return this.userRepository.findByEmail(email);
+    }
+
+    @Override
+    public void deleteUserById(Long id) {
+        this.userRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public List<Commit> getCommitsByUserEmail(String email) {
+        List<Commit> commits = this.userRepository.findByEmail(email).iterator().next().getCommits();
+        commits.size();
+        return commits;
     }
 }

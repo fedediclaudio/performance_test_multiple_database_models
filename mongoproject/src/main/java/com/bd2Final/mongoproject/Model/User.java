@@ -19,7 +19,7 @@ public class User {
     @Field
     private String email;
 
-//    @DBRef
+    @DBRef
     private List<Commit> commits = new ArrayList<>();
 
     public User() {}
