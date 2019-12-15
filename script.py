@@ -2,19 +2,18 @@
 import csv
 import random
 
-records=9
+records=1000020
 print("Making %d records\n" % records)
 
-fieldnames=['id','name','age','city']
-writer = csv.DictWriter(open("people.csv", "w"), fieldnames=fieldnames)
+fieldnames=['id','name','email']
+writer = csv.DictWriter(open("mysql_user_1m.csv", "w"), fieldnames=fieldnames)
 
 names=['Deepak', 'Sangeeta', 'Geetika', 'Anubhav', 'Sahil', 'Akshay']
-cities=['Delhi', 'Kolkata', 'Chennai', 'Mumbai']
+email=['@yahoo.com', '@gmail.com', '@hotmail.com', '@outlook.com']
 
 writer.writerow(dict(zip(fieldnames, fieldnames)))
-for i in range(0, records):
+for i in range(100, records):
   writer.writerow(dict([
     ('id', i),
     ('name', random.choice(names)),
-    ('age', str(random.randint(24,26))),
-    ('city', random.choice(cities))]))
+    ('email', random.choice(names) + random.choice(email))]))
