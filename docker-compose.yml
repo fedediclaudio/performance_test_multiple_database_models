@@ -26,7 +26,7 @@ services:
     - 7474:7474 # - Browser explorer
     - 7687:7687 # - Bolt
     volumes:
-    - ./neo4j-creation:/var/lib/neo4j/import:ro
+    - ./scripts-creation/neo4j:/var/lib/neo4j/import:ro
     environment:
     - NEO4J_AUTH=none
   # elastic:
