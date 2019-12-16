@@ -19,42 +19,42 @@ services:
   #   - MONGO_INITDB_DATABASE=db2Final
   #   volumes: 
   #   - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
-  neo4j:
-    image: neo4j
-    container_name: "docker_neo4j"
+  # neo4j:
+  #   image: neo4j
+  #   container_name: "docker_neo4j"
+  #   ports:
+  #   - 7474:7474 # - Browser explorer
+  #   - 7687:7687 # - Bolt
+  #   volumes:
+  #   - ./scripts-creation/neo4j:/var/lib/neo4j/import:ro
+  #   environment:
+  #   - NEO4J_AUTH=none
+  elastic:
+    image: elasticsearch:7.4.2
+    container_name: elasticsearch
     ports:
-    - 7474:7474 # - Browser explorer
-    - 7687:7687 # - Bolt
-    volumes:
-    - ./scripts-creation/neo4j:/var/lib/neo4j/import:ro
+    - 9200:9200 # - API
+    - 9300:9300 # - Comunicacion entre nodos
     environment:
-    - NEO4J_AUTH=none
-  # elastic:
-  #   image: elasticsearch:7.4.2
-  #   container_name: elasticsearch
-  #   ports:
-  #   - 9200:9200 # - API
-  #   - 9300:9300 # - Comunicacion entre nodos
-  #   environment:
-  #   - discovery.type=single-node
-  #   expose:
-  #   - "9200"
-  # kibana:
-  #   image: kibana:7.4.2
-  #   container_name: "docker_kibana_1"
-  #   environment:
-  #   - SERVER_NAME=kibana.localhost
-  #   - ELASTICSEARCH_URL=http://elasticsearch:9200
-  #   - ELASTICSEARCH_USERNAME=elastic
-  #   - ELASTICSEARCH_HOST=elasticsearch
-  #   - ELASTICSEARCH_PORT=9200
-  #   - ELASTIC_PWD=changeme
-  #   - KIBANA_PWD=changeme
-  #   ports:
-  #   - 5601:5601
-  #   expose:
-  #   - "5601"
-  #   links:
-  #   - elastic
-  #   depends_on:
-  #   - elastic
+    - discovery.type=single-node
+    expose:
+    - "9200"
+  kibana:
+    image: kibana:7.4.2
+    container_name: "docker_kibana_1"
+    environment:
+    - SERVER_NAME=kibana.localhost
+    - ELASTICSEARCH_URL=http://elasticsearch:9200
+    - ELASTICSEARCH_USERNAME=elastic
+    - ELASTICSEARCH_HOST=elasticsearch
+    - ELASTICSEARCH_PORT=9200
+    - ELASTIC_PWD=changeme
+    - KIBANA_PWD=changeme
+    ports:
+    - 5601:5601
+    expose:
+    - "5601"
+    links:
+    - elastic
+    depends_on:
+    - elastic

@@ -28,6 +28,12 @@ public class BitHubApplicationTest {
     }
 
     @Test
+    public void generarRegistros(){
+        int cantidad = 10;
+        this.service.generateRegistros(cantidad);
+    }
+
+    @Test
     public void createUser(){
         long startTime = System.nanoTime();
         this.service.createUser("user1","user1@example.com");

@@ -18,12 +18,9 @@ public class Commit {
 //    Nested = Embebido
 //    private User author;
 
-    public Commit() {}
-
-    public Commit(String message, String hash, User author){
+    public Commit(String message, String hash){
         this.message = message;
         this.hash = hash;
-        author.getCommits().add(this);
     }
 
     public Commit(String id, String message, String hash){
