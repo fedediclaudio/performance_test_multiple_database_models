@@ -1,13 +1,13 @@
 version: "3.3"
 services:
-  # mysql:
-  #   image: "mysql"
-  #   container_name: "docker_mysql"
-  #   command: --default-authentication-plugin=mysql_native_password
-  #   ports:
-  #   - 3306:3306
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: 123456
+  mysql:
+    image: "mysql"
+    container_name: "docker_mysql"
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+    - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
   # mongo:
   #   image: mongo
   #   container_name: "docker_mongo_1"
@@ -29,32 +29,32 @@ services:
   #   - ./scripts-creation/neo4j:/var/lib/neo4j/import:ro
   #   environment:
   #   - NEO4J_AUTH=none
-  elastic:
-    image: elasticsearch:7.4.2
-    container_name: elasticsearch
-    ports:
-    - 9200:9200 # - API
-    - 9300:9300 # - Comunicacion entre nodos
-    environment:
-    - discovery.type=single-node
-    expose:
-    - "9200"
-  kibana:
-    image: kibana:7.4.2
-    container_name: "docker_kibana_1"
-    environment:
-    - SERVER_NAME=kibana.localhost
-    - ELASTICSEARCH_URL=http://elasticsearch:9200
-    - ELASTICSEARCH_USERNAME=elastic
-    - ELASTICSEARCH_HOST=elasticsearch
-    - ELASTICSEARCH_PORT=9200
-    - ELASTIC_PWD=changeme
-    - KIBANA_PWD=changeme
-    ports:
-    - 5601:5601
-    expose:
-    - "5601"
-    links:
-    - elastic
-    depends_on:
-    - elastic
+  # elastic:
+  #   image: elasticsearch:7.4.2
+  #   container_name: elasticsearch
+  #   ports:
+  #   - 9200:9200 # - API
+  #   - 9300:9300 # - Comunicacion entre nodos
+  #   environment:
+  #   - discovery.type=single-node
+  #   expose:
+  #   - "9200"
+  # kibana:
+  #   image: kibana:7.4.2
+  #   container_name: "docker_kibana_1"
+  #   environment:
+  #   - SERVER_NAME=kibana.localhost
+  #   - ELASTICSEARCH_URL=http://elasticsearch:9200
+  #   - ELASTICSEARCH_USERNAME=elastic
+  #   - ELASTICSEARCH_HOST=elasticsearch
+  #   - ELASTICSEARCH_PORT=9200
+  #   - ELASTIC_PWD=changeme
+  #   - KIBANA_PWD=changeme
+  #   ports:
+  #   - 5601:5601
+  #   expose:
+  #   - "5601"
+  #   links:
+  #   - elastic
+  #   depends_on:
+  #   - elastic

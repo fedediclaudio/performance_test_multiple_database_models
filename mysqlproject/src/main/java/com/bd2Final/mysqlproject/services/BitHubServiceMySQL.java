@@ -67,8 +67,8 @@ public class BitHubServiceMySQL implements BitHubService {
     public List<Commit> getCommitsByUserEmail(String email) {
         List<User> users = this.userRepository.findByEmail(email);
         User user = users.iterator().next();
-        Hibernate.initialize(user.getCommits());
         List<Commit> commits = user.getCommits();
+        commits.size();
         return commits;
     }
 }
