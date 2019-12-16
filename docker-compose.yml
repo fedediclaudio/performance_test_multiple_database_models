@@ -1,13 +1,13 @@
 version: "3.3"
 services:
-  # mysql:
-  #   image: "mysql"
-  #   container_name: "docker_mysql"
-  #   command: --default-authentication-plugin=mysql_native_password
-  #   ports:
-  #   - 3306:3306
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: 123456
+  mysql:
+    image: "mysql"
+    container_name: "docker_mysql"
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+    - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
   # mongo:
   #   image: mongo
   #   container_name: "docker_mongo_1"
@@ -19,16 +19,16 @@ services:
   #   - MONGO_INITDB_DATABASE=db2Final
   #   volumes: 
   #   - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
-  neo4j:
-    image: neo4j
-    container_name: "docker_neo4j"
-    ports:
-    - 7474:7474 # - Browser explorer
-    - 7687:7687 # - Bolt
-    volumes:
-    - ./scripts-creation/neo4j:/var/lib/neo4j/import:ro
-    environment:
-    - NEO4J_AUTH=none
+  # neo4j:
+  #   image: neo4j
+  #   container_name: "docker_neo4j"
+  #   ports:
+  #   - 7474:7474 # - Browser explorer
+  #   - 7687:7687 # - Bolt
+  #   volumes:
+  #   - ./scripts-creation/neo4j:/var/lib/neo4j/import:ro
+  #   environment:
+  #   - NEO4J_AUTH=none
   # elastic:
   #   image: elasticsearch:7.4.2
   #   container_name: elasticsearch

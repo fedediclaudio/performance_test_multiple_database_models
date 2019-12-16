@@ -1,5 +1,6 @@
 package com.bd2Final.elasticproject.services;
 
+import com.bd2Final.elasticproject.Config.Generator;
 import com.bd2Final.elasticproject.model.Commit;
 import com.bd2Final.elasticproject.model.User;
 import com.bd2Final.elasticproject.repositories.CommitRepository;
@@ -31,7 +32,7 @@ public class BitHubServiceElasticsearch implements BitHubService {
 
     @Override
     public Commit createCommit(String message, String hash, User author) {
-        Commit commit = new Commit(message, hash, author);
+        Commit commit = new Commit(message, hash);
         commitRepository.save(commit);
         userRepository.save(author);
         return commit;
@@ -67,5 +68,10 @@ public class BitHubServiceElasticsearch implements BitHubService {
     public void deleteAll() {
         userRepository.deleteAll();
         commitRepository.deleteAll();
+    }
+
+    public void generateRegistros(int cant) {
+        Generator generator = new Generator();
+        generator.generateRegistros(cant, userRepository);
     }
 }

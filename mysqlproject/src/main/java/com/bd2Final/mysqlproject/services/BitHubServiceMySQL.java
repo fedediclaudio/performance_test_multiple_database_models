@@ -7,8 +7,8 @@ import com.bd2Final.mysqlproject.repositories.UserRepository;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.beans.Transient;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +65,9 @@ public class BitHubServiceMySQL implements BitHubService {
     @Override
     @Transactional
     public List<Commit> getCommitsByUserEmail(String email) {
-        List<Commit> commits = this.userRepository.findByEmail(email).iterator().next().getCommits();
+        List<User> users = this.userRepository.findByEmail(email);
+        User user = users.iterator().next();
+        List<Commit> commits = user.getCommits();
         commits.size();
         return commits;
     }
