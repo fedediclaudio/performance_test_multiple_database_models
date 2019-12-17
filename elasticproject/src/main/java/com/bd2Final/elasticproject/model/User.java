@@ -12,14 +12,14 @@ import java.util.List;
 public class User {
 
     @Id
-    private String id;
+    private String _id = null;
 
     private String name;
 
     private String email;
 
     // NESTED: Objetos embebidos ***** Funciona bien
-    @Field(type = FieldType.Nested)
+//    @Field(type = FieldType.Nested)
     private List<Commit> commits = new ArrayList<>();
 
     public User() {}
@@ -30,17 +30,24 @@ public class User {
     }
 
     public User(String id, String name, String email){
-        this.id = id;
+        this._id = id;
         this.name = name;
         this.email = email;
     }
 
+    public User(String name, String email, ArrayList<Commit> commits) {
+//        this._id = id;
+        this.name = name;
+        this.email = email;
+        this.commits = commits;
+    }
+
     public String getId() {
-        return id;
+        return _id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this._id = id;
     }
 
     public String getName() {

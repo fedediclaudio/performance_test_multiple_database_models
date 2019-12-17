@@ -9,7 +9,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 public class Commit {
 
     @Id
-    private String id;
+    private String _id = null;
 
     private String hash;
 
@@ -18,23 +18,26 @@ public class Commit {
 //    Nested = Embebido
 //    private User author;
 
-    public Commit(String message, String hash){
+    public Commit(String message, String hash, User user){
         this.message = message;
         this.hash = hash;
+        user.getCommits().add(this);
     }
 
     public Commit(String id, String message, String hash){
-        this.id = id;
+        this._id = id;
         this.message = message;
         this.hash = hash;
     }
 
+    public Commit() {}
+
     public String getId() {
-        return id;
+        return _id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this._id = id;
     }
 
     public String getHash() {

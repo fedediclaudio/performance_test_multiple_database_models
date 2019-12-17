@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Random;
+
 @SpringBootTest
 @Rollback(true)
 public class BitHubApplicationTest {
@@ -30,8 +32,13 @@ public class BitHubApplicationTest {
 
     @Test
     public void generarRegistros(){
-        int cantidad = 10;
+        long startTime = System.nanoTime();
+        int cantidad = 100;
         this.service.generateRegistros(cantidad);
+        long endTime = System.nanoTime();
+        long effectiveTimeInNano = endTime - startTime;
+        double effectiveTimeInSecond = (double) effectiveTimeInNano/ 1_000_000_000;
+        System.out.println("Tiempo de toda la insercion: " + effectiveTimeInSecond);
     }
 
     @Test
@@ -46,31 +53,21 @@ public class BitHubApplicationTest {
 
     @Test
     public void updateUserById(){
-        User user1 = this.service.createUser("user1","user1@example.com");
+        User user1 = this.service.getUserByEmail("fedemozzon@gmail.com").iterator().next();
         user1.setEmail("otromail@gmail.com");
         long startTime = System.nanoTime();
         this.service.updateUser(user1);
         long endTime = System.nanoTime();
+        user1.setEmail("fedemozzon@gmail.com");
+        this.service.updateUser(user1);
         long effectiveTimeInNano = endTime - startTime;
         double effectiveTimeInSecond = (double) effectiveTimeInNano/ 1_000_000_000;
         System.out.println("Tiempo de actualizacion de usuario vacio en Elastic: " + effectiveTimeInSecond);
     }
 
     @Test
-    public void deleteUser(){
-        User user1 = this.service.createUser("user1","user1@example.com");
-        long startTime = System.nanoTime();
-        this.service.deleteUserById(user1.getId());
-        long endTime = System.nanoTime();
-        long effectiveTimeInNano = endTime - startTime;
-        double effectiveTimeInSecond = (double) effectiveTimeInNano/ 1_000_000_000;
-        System.out.println("Tiempo de eliminacion de usuario vacio en Elastic: " + effectiveTimeInSecond);
-    }
-
-    @Test
     public void getUsersByEmail(){
-        User user1 = this.service.createUser("user1","user1@example.com");
-        String email = user1.getEmail();
+        String email = "fedemozzon@gmail.com";
         long startTime = System.nanoTime();
         Iterable<User> res = this.service.getUserByEmail(email);
         long endTime = System.nanoTime();
@@ -82,16 +79,24 @@ public class BitHubApplicationTest {
 
     @Test
     public void getCommitsByUserEmail(){
-        User user1 = this.service.createUser("user1","user1@example.com");
-        Commit commit1 = this.service.createCommit("Primer commit", "1234567", user1);
-        Commit commit2 = this.service.createCommit("Segundo commit", "1234568", user1);
-        String email = user1.getEmail();
+        String email = "fede@gmail.com";
         long startTime = System.nanoTime();
         Iterable<Commit> commits = this.service.getCommitsByUserEmail(email);
         long endTime = System.nanoTime();
         long effectiveTimeInNano = endTime - startTime;
         double effectiveTimeInSecond = (double) effectiveTimeInNano/ 1_000_000_000;
         System.out.println("Tiempo de busqueda de usuario vacio en MySQL: " + effectiveTimeInSecond);
+    }
+
+    @Test
+    public void deleteUser(){
+        User user1 = this.service.getUserByEmail("fedemozzon@gmail.com").iterator().next();
+        long startTime = System.nanoTime();
+        this.service.deleteUserById(user1.getId());
+        long endTime = System.nanoTime();
+        long effectiveTimeInNano = endTime - startTime;
+        double effectiveTimeInSecond = (double) effectiveTimeInNano/ 1_000_000_000;
+        System.out.println("Tiempo de eliminacion de usuario vacio en Elastic: " + effectiveTimeInSecond);
     }
 
 }

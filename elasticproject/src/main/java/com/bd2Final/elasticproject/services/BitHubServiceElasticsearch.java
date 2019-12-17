@@ -32,7 +32,7 @@ public class BitHubServiceElasticsearch implements BitHubService {
 
     @Override
     public Commit createCommit(String message, String hash, User author) {
-        Commit commit = new Commit(message, hash);
+        Commit commit = new Commit(message, hash, author);
         commitRepository.save(commit);
         userRepository.save(author);
         return commit;
