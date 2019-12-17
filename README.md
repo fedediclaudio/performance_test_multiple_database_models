@@ -11,10 +11,19 @@ Antes de poder importar los registros se debe crear la base de datos correspondi
 ```
 CREATE DATABASE db2Final;
 ```
+```
+CREATE TABLE db2Final.user
+CREATE TABLE db2Final.commit
+```
 
-Crear las tablas?
+Para importar los datos de los siguientes archivos:
 
-Para importar los datos de tales archivos ...
+[Para 10 mil registros](https://drive.google.com/open?id=1wRj_tHpzTCSK-87KGXH8oHDVfIjNPBmh).
+
+[Para 100 mil registros](https://drive.google.com/open?id=1Sv-dqMTrDpQyvJyVeng-C6zplNcGGxEC).
+
+[Para 1 millon de registros](https://drive.google.com/open?id=13iPCQ6HIPoSFtevv8lGGvxxw0fzQusYd).
+
 
 Se deben
 
@@ -30,6 +39,15 @@ mongoimport -u user -p 123456 --db=db2Final --collection=user --file={name}.json
 ```
 
 Esto carga los documentos que contiene el archivo en una collecion llamada user y requiere la autenticacion para tal base de datos.
+
+Para importar los datos de los siguientes archivos:
+
+[Para 10 mil registros](https://drive.google.com/open?id=1c6eyyvoXfF0bAFS2GnIAUfaBexTyGSv5).
+
+[Para 100 mil registros](https://drive.google.com/open?id=1HuhLFWIBSSmAfTzcBXtJzFHK7mbc9UvD).
+
+[Para 1 millon de registros](https://drive.google.com/open?id=1jvjELReRilNnYLKHHo7wvzPkTWZ6FCbj).
+
 
 ## Neo4J
 
@@ -72,6 +90,14 @@ CREATE (c)-[:AUTHOR]->(u)
 ```
 
 El nombre del archivo debe la ruta del archivo partiendo desde dentro de la carpeta "neo4j-creation" anteriormente creada. El uso de `USING PERIODIC COMMIT 500` permite realizar un volcado a disco cada 500 inserciones, esto para evitar que se desborde la memoria. 
+
+Para importar los datos de los siguientes archivos:
+
+[Para 10 mil registros](https://drive.google.com/open?id=1VSB6CFQr-vi7ytegIHf-9iMW_VGEaFc3).
+
+[Para 100 mil registros](https://drive.google.com/open?id=1f8PEESOeFtOAy4vcHFsrQSsD29_j6ry7).
+
+[Para 1 millon de registros](https://drive.google.com/open?id=1QAzjsHtvnhwHqi7gnnzpkGXKy_3Ct4bz).
 
 ## Elasticsearch
 
