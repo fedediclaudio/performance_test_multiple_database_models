@@ -24,9 +24,9 @@ public class Generator {
         // El siguiente es el sin commits:
         userRepository.save(new User("Fede el gordo de la bd", "fedemozzon@gmail.com"));
         // El siguiente tiene commits
-        User user = new User("Fede Di Claudio", "fede@gmail.com");
-        Commit commit1 = new Commit("Mensaje 1", "1234567890", user);
-        Commit commit2 = new Commit("Mensaje2", "0123456789", user);
-        userRepository.save(user);
+//        User user = new User("Fede Di Claudio", "fede@gmail.com");
+//        Commit commit1 = new Commit("Mensaje 1", "1234567890", user);
+//        Commit commit2 = new Commit("Mensaje2", "0123456789", user);
+//        userRepository.save(user);
     }
 }

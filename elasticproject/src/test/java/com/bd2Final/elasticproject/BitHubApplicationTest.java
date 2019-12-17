@@ -33,7 +33,7 @@ public class BitHubApplicationTest {
     @Test
     public void generarRegistros(){
         long startTime = System.nanoTime();
-        int cantidad = 100;
+        int cantidad = 1;
         this.service.generateRegistros(cantidad);
         long endTime = System.nanoTime();
         long effectiveTimeInNano = endTime - startTime;
