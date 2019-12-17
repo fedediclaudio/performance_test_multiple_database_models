@@ -25,8 +25,6 @@ Para importar los datos de los siguientes archivos:
 [Para 1 millon de registros](https://drive.google.com/open?id=13iPCQ6HIPoSFtevv8lGGvxxw0fzQusYd).
 
 
-Se deben
-
 ## MongoDB
 
 Se porporciona un archivo que posee usuarios, en formato BSON, con una cantidad aleatoria de commits. 
